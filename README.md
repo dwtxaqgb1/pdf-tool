@@ -40,3 +40,34 @@ MIT License
 
 ### 功能展示
 更多功能请访问项目主页体验。
+
+## 🔄 重新部署（更新代码后）
+
+当项目有更新时，按以下步骤重新部署：
+
+### 方法一：快速重新部署
+
+```bash
+# 进入项目目录
+cd /vol1/1000/docker/pdf_tool_web
+
+# 拉取最新代码
+git pull
+
+# 重新构建镜像
+docker build -t pdf-tool:latest .
+
+# 停止并删除旧容器
+docker stop pdf-tool
+docker rm pdf-tool
+
+# 运行新容器
+docker run -d \
+  --name pdf-tool \
+  --restart unless-stopped \
+  -p 5200:8080 \
+  -v $(pwd)/data:/tmp/pdf_tool \
+  pdf-tool:latest
+
+# 查看日志确认运行正常
+docker logs pdf-tool
