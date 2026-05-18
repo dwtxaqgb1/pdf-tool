@@ -29,3 +29,14 @@ docker run -d --name pdf-tool --restart unless-stopped -p 5200:8080 -v $(pwd)/da
 ## 📄 许可证
 
 MIT License
+
+## 📸 界面截图
+
+### 处理PDF页面
+![处理PDF页面](images/screenshot_20260518_125328_com.huawei.hmos.browser.png)
+
+### 处理图片页面
+![处理图片页面](images/screenshot_20260518_125337_com.huawei.hmos.browser.png)
+
+### 功能展示
+更多功能请访问项目主页体验。
