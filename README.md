@@ -19,12 +19,81 @@
 
 ## 🐳 Docker 部署
 
-\`\`\`bash
-docker build -t pdf-tool:latest .
-docker run -d --name pdf-tool --restart unless-stopped -p 5200:8080 -v $(pwd)/data:/tmp/pdf_tool pdf-tool:latest
-\`\`\`
+Text
 
-访问: \`http://你的IP:5200\`
+126
+    exit 1
+127
+fi
+128
+echo -e "${GREEN}✅ 容器启动成功${NC}"
+129
+echo ""
+130
+​
+131
+# 10. 等待容器启动
+132
+echo "⏳ 等待容器启动..."
+133
+sleep 3
+134
+​
+135
+# 11. 查看容器状态
+136
+echo ""
+137
+echo "📊 容器状态:"
+138
+docker ps --filter "name=pdf-tool" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+139
+​
+140
+# 12. 查看日志
+141
+echo ""
+142
+echo "📋 容器日志:"
+143
+docker logs --tail 20 pdf-tool
+144
+​
+145
+# 13. 获取 NAS IP
+146
+NAS_IP=$(ip addr show | grep -oP '(?<=inet\s)\d+(\.\d+){3}' | grep -v '127.0.0.1' | head -1)
+147
+​
+148
+echo ""
+149
+echo "=========================================="
+150
+echo -e "${GREEN}🎉 部署完成！${NC}"
+151
+echo "=========================================="
+152
+echo ""
+153
+echo "🌐 访问地址: http://${NAS_IP}:${PORT}"
+154
+echo "📁 项目目录: $PROJECT_DIR"
+155
+echo "📋 查看日志: docker logs pdf-tool"
+156
+echo "🛑 停止容器: docker stop pdf-tool"
+157
+echo "🚀 启动容器: docker start pdf-tool"
+158
+echo "🔄 重启容器: docker restart pdf-tool"
+159
+echo "🗑 删除容器: docker rm -f pdf-tool"
+160
+echo ""
+161
+echo "=========================================="
+
 
 ## 📄 许可证
 
